@@ -24,6 +24,8 @@
 
 (defn- next-link [dom]
   ; Written this way to avoid Util.java:221 RuntimeException for Unmatched delimiter: )
+  ; Will throw NPE for single-page wish lists.
+  ; Will throw CCE for last page of multi-page lists.
   (az-link (((first ((first (html/select dom [:#wishlistPagination :li.a-last])) :content)) :attrs) :href)))
 
 (defn wishlist [id]
@@ -34,5 +36,5 @@
         coll
         (let [resource (fetch-url url)
               links (items resource)]
-          (recur (try (next-link resource) (catch ClassCastException _ nil))
+          (recur (try (next-link resource) (catch ClassCastException _ nil) (catch NullPointerException _ nil))
                  (concat coll (get-links links))))))))
