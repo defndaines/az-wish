@@ -4,4 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.7.0-alpha4"]
-                 [enlive "1.1.5"]])
+                 [org.clojure/tools.cli "0.3.1"]
+                 [enlive "1.1.5"]]
+  :main az-wish.core
+  :aot [az-wish.core])

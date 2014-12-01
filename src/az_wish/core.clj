@@ -1,5 +1,7 @@
 (ns az-wish.core
-  (:require [net.cgrand.enlive-html :as html]))
+  (:require [net.cgrand.enlive-html :as html]
+            [clojure.tools.cli :refer [parse-opts]])
+  (:gen-class :main true))
 
 (defn- az-link [rel-uri]
   (str "http://www.amazon.com" rel-uri))
@@ -39,3 +41,12 @@
               links (items resource)]
           (recur (next-link resource)
                  (concat coll (get-links links))))))))
+
+(def cli-options
+  [["-w" "--wishlist" "ID of the wishlist to grab data and links for."]])
+
+(defn -main [& args]
+  (let [{:keys [options arguments errors summary]} (parse-opts args cli-options)]
+    (cond
+      (:wishlist options) (let [id (first arguments)]
+                            (print (pr-str (wishlist id)))))))
