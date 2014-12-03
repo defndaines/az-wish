@@ -13,13 +13,34 @@
   (html/html-resource (java.net.URL. url)))
 
 (defn- items [dom]
-  (html/select dom [:div.a-fixed-left-grid :h5 :a]))
+  (html/select dom [(html/attr-contains :id "item_")]))
 
-(defn- item-title [link]
-  (clojure.string/trim (html/text link)))
+(defn- item-title [item]
+  (let [title (first (html/select item [:h5 :a]))]
+    (clojure.string/trim (html/text title))))
 
-(defn- item-link [link]
-  (str (az-link (re-find #"^[^?]*" (:href (:attrs link))))))
+(defn- item-link [item]
+  (let [title (first (html/select item [:h5 :a]))]
+    (str (az-link (re-find #"^[^?]*" (:href (:attrs title)))))))
+
+(defn- item-price [item]
+  (if-let [price-section (first (html/select item [:div.price-section :span]))]
+    (clojure.string/trim (html/text price-section))))
+
+(defn- item-availability [item]
+  (if-let [avail (html/text (first (html/select item [:span.itemAvailMessage])))]
+    avail))
+
+; Do I want to convert the availability into a contant? How best to track limited quantity?
+;;     (cond
+;;      (= "In Stock." avail) :in-stock
+;;      (= "Currently unavailable." avail) :unavailable
+;;      (re-matches #".*will be released.*" avail) :pre-order
+;;      (re-matches #"^Only .*" avail) :limited-supply
+;;      :else avail)))
+
+(defn- item-comment [item]
+  (html/text (first (html/select item [:span.g-comment-quote]))))
 
 (defn- item-pair [link]
   {:link (item-link link) :title (item-title link)})
