@@ -42,8 +42,12 @@
 (defn- item-comment [item]
   (html/text (first (html/select item [:span.g-comment-quote]))))
 
-(defn- item-pair [link]
-  {:link (item-link link) :title (item-title link)})
+(defn- item-hash [link]
+  {:title (item-title link)
+   :link (item-link link)
+   :price (item-price link)
+   :availability (item-availability link)
+   :comment (item-comment link)})
 
 (defn- next-link [dom]
   ; Single page wishlists will not have the element at all.
@@ -52,16 +56,18 @@
     (if-let [nxt (-> a-last :content first :attrs)]
       (az-link (:href nxt)))))
 
+(defn- get-links [links]
+  (map item-hash links))
+
 (defn wishlist [id]
-  (letfn [(get-links [links] (map item-pair links))]
-    (loop [url (list-url id)
-           coll '()]
-      (if (nil? url)
-        coll
-        (let [resource (fetch-url url)
-              links (items resource)]
-          (recur (next-link resource)
-                 (concat coll (get-links links))))))))
+  (loop [url (list-url id)
+         coll '()]
+    (if (nil? url)
+      coll
+      (let [resource (fetch-url url)
+            links (items resource)]
+        (recur (next-link resource)
+               (concat coll (get-links links)))))))
 
 (def cli-options
   [["-w" "--wishlist" "ID of the wishlist to grab data and links for."]])
