@@ -1,15 +1,18 @@
 (ns az-wish.core.ccc
-  (:require [net.cgrand.enlive-html :as html]))
+  (:require [net.cgrand.enlive-html :as html]
+            [clj-time.format :as fmt]))
 
+;; TODO: Duplicate, worth extracting?
 (defn- fetch-url [url]
   (html/html-resource (java.net.URL. url)))
 
-;; http://camelcamelcamel.com/product/1941222226 ... redirects to ...
-;; http://camelcamelcamel.com/Mastering-Clojure-Macros-Cleaner-Smarter/product/1941222226
+(def ccc-format (fmt/formatter "MMM dd, yyyy"))
 
-(def direct (fetch-url "http://camelcamelcamel.com/product/1941222226"))
+(defn- to-date [date]
+  (fmt/unparse (fmt/formatters :date) (fmt/parse ccc-format date)))
 
-(def az-lowest (second (html/select direct [:table.product_pane :tr.lowest_price :td])))
-;; And the next td is the date of that price
-
-(def price (-> az-lowest :content first))
+(defn lowest [id]
+  (let [url (str "http://camelcamelcamel.com/product/" id)
+        data (html/select (fetch-url url) [:table.product_pane :tr.lowest_price :td])]
+    {:price (-> data second :content first)
+     :date (-> (nth data 2) :content first to-date)}))
