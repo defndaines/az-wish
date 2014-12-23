@@ -1,4 +1,4 @@
-(ns core/ccc
+(ns az-wish.core.ccc
   (:require [net.cgrand.enlive-html :as html]))
 
 (defn- fetch-url [url]
