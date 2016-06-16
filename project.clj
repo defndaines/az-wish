@@ -3,9 +3,9 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.7.0-alpha4"]
-                 [org.clojure/tools.cli "0.3.1"]
-                 [enlive "1.1.5"]
-                 [clj-time "0.8.0"]]
+  :dependencies [[org.clojure/clojure "1.9.0-alpha7"]
+                 [org.clojure/tools.cli "0.3.5"]
+                 [enlive "1.1.6"]
+                 [clj-time "0.12.0"]]
   :main az-wish.core
   :aot [az-wish.core])
