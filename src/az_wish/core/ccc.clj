@@ -3,12 +3,12 @@
             [clj-time.format :as fmt]))
 
 ;; TODO: Duplicate, worth extracting?
-(defn- fetch-url [url]
+(defn ^:private fetch-url [url]
   (html/html-resource (java.net.URL. url)))
 
 (def ccc-format (fmt/formatter "MMM dd, yyyy"))
 
-(defn- to-date [date]
+(defn ^:private to-date [date]
   (fmt/unparse (fmt/formatters :date) (fmt/parse ccc-format date)))
 
 (defn lowest [id]

@@ -1,10 +1,10 @@
 (ns az-wish.core.item
   (:require [net.cgrand.enlive-html :as html]))
 
-(defn- item-url [id]
+(defn ^:private item-url [id]
   (str "http://www.amazon.com/dp/" id "/"))
 
-(defn- fetch-url [url]
+(defn ^:private fetch-url [url]
   (html/html-resource (java.net.URL. url)))
 
 ;; 193398838X ... http://www.amazon.com/dp/193398838X/
