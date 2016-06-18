@@ -12,7 +12,7 @@ It will iterate through all pages of the wishlist to grab all items, with titles
 
 ## License
 
-Copyright © 2014 Michael S. Daines
+Copyright © 2014-2016 Michael S. Daines
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
