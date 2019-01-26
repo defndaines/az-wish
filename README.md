@@ -1,6 +1,8 @@
 # az-wish
 
-A Clojure library designed to grab amazon.com wishlists.
+A Clojure library designed to grab [amazon.com](https://www.amazon.com/)
+wishlists.
+
 
 ## Usage
 
@@ -10,9 +12,10 @@ Currently a work in progress. You can run the code in a REPL to grab the sequenc
 
 It will iterate through all pages of the wishlist to grab all items, with titles and links.
 
+
 ## License
 
-Copyright © 2014-2016 Michael S. Daines
+Copyright © 2014-2019 Michael S. Daines
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.

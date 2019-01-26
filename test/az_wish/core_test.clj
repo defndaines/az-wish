@@ -1,7 +1,6 @@
 (ns az-wish.core-test
-  (:require [clojure.test :refer :all]
-            [az-wish.core :refer :all]))
+  "Tests against the az-wish.core namespace."
+  (:require [clojure.test :refer [deftest testing is]]
+            [az-wish.core :as core]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+
