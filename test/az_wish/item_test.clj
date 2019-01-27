@@ -24,7 +24,7 @@
 (def not-in-stock-item (nth wishlist 4))
 
 
-;; Test
+;; Tests
 
 (deftest pull-name-test
   (testing "pulling a name from a wishlist item"

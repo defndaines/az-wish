@@ -6,16 +6,20 @@ wishlists.
 
 ## Usage
 
-Currently a work in progress. You can run the code in a REPL to grab the sequence.
+Currently a work in progress. You can run the code in a REPL to grab the
+sequence.
 
-    (def my-wishlist (az-wish/wishlist "2B071NDZWAZPX"))
+```shell
+lein run -w 2B071NDZWAZPX > wishlist.edn
+```
 
-It will iterate through all pages of the wishlist to grab all items, with titles and links.
+It will iterate through all pages of the wishlist to grab all items, with
+titles and links.
 
 
 ## License
 
 Copyright © 2014-2019 Michael S. Daines
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License either version 1.0 or (at your
+option) any later version.
