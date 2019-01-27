@@ -6,15 +6,46 @@ wishlists.
 
 ## Usage
 
-Currently a work in progress. You can run the code in a REPL to grab the
-sequence.
+*Work in Progress*
 
+You can run the code from a command line with `lein` installed:
 ```shell
 lein run -w 2B071NDZWAZPX > wishlist.edn
 ```
 
-It will iterate through all pages of the wishlist to grab all items, with
-titles and links.
+It will iterate through all pages of the wishlist to grab all items,
+normalizing them into a data structure something like this:
+
+```clojure
+({:name "Preacher 2016 Season 03"
+  :id "B07FDKWTXR"
+  :price 29.99
+  :used-price nil
+  :format "Blu-ray"
+  :state :available}
+ {:name "Dungeons and Dragons Art and Arcana: A Visual History"
+  :id "0399580948"
+  :price 34.00
+  :used-price nil
+  :format "Hardcover"
+  :state :available})
+```
+
+## Future Work
+
+I plan to plug this into a process to periodically check for price changes so
+that I can notify when an item drops below a particular threshold. That
+threshold may be a percentage or perhaps compared to a best-price determined
+from historical data. This'll need to be stored in a database to track prices
+over time.
+
+I'll also need to adjust for purchases, so that items that disappear from the
+list are no longer tracked. But, I've noticed a few items go missing from my
+list over the years, so this could also highlight when an item has become
+permanently unavailable.
+
+Another feature is to watch for items that have been unavailable suddenly
+coming back onto the market.
 
 
 ## License
