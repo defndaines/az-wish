@@ -55,6 +55,7 @@
       (.select "span.itemUsedAndNewPrice")
       (.text)
       (string/replace "USD " "")
+      (string/replace-first "$" "")
       parse-price))
 
 (defn pull-release-date

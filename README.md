@@ -20,15 +20,15 @@ normalizing them into a data structure something like this:
 ({:name "Preacher 2016 Season 03"
   :id "B07FDKWTXR"
   :price 29.99
-  :used-price nil
+  :used-price 20.84
   :format "Blu-ray"
   :state :available}
  {:name "Dungeons and Dragons Art and Arcana: A Visual History"
   :id "0399580948"
   :price 34.00
-  :used-price nil
+  :used-price 26.97
   :format "Hardcover"
-  :state :available})
+  :state :available}
 ```
 
 ## Future Work
