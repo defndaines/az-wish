@@ -10,7 +10,7 @@ wishlists.
 
 You can run the code from a command line with `lein` installed:
 ```shell
-lein run -w 2B071NDZWAZPX > wishlist.edn
+lein run -w 2B071NDZWAZPX > wishlist-$(date +%Y-%m-%d).edn
 ```
 
 It will iterate through all pages of the wishlist to grab all items,
